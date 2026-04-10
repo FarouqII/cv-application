@@ -1,3 +1,18 @@
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+]
+
 export default function CVPreview({ personalInfo, summary, education, experience, currentSection }) {
   return (
     <div id="preview">
@@ -22,8 +37,28 @@ export default function CVPreview({ personalInfo, summary, education, experience
 
       <section id="experience" className={currentSection === "experience" ? "active" : "inactive"}>
         <h3>Experience</h3>
-        <p>{experience.company}</p>
-        <p>{experience.position}</p>
+        {experience.map(exp => {
+          const startMonth = parseInt(exp.startDate.split('-')[1]);
+          const startYear = exp.startDate.split('-')[0];
+          const start = `${MONTHS[startMonth]} ${startYear}`;
+
+          const endMonth = parseInt(exp.endDate.split('-')[1]);
+          const endYear = exp.endDate.split('-')[0];
+          const end = exp.endDate.length == 0 ? "Present" : `${MONTHS[endMonth]} ${endYear}`;
+
+          return (
+            <div class="exp">
+              <p class="expCompany"><b>{exp.company}</b> – {exp.position}</p>
+              <p class="expDate"><i>{start} - {end}</i></p>
+
+              <ul>
+                {exp.bullets.map(description => {
+                  return <li>{description}</li>
+                })}
+              </ul>
+            </div>
+          )
+        })}
       </section>
 
       <hr></hr>

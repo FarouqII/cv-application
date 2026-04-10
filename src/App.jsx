@@ -21,10 +21,7 @@ export default function App() {
     summary: DEF_SMMRY,
   })
 
-  const [experience, setExperience] = useState({
-    company: "",
-    position: "",
-  });
+  const [experience, setExperience] = useState([]);
 
   const [education, setEducation] = useState({
     school: DEF_SCHOOL,

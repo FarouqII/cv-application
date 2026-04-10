@@ -24,7 +24,7 @@ body, #root {
 }
 
 aside {
-    width: 20%;
+    min-width: 20%;
     height: 30%;
     display: flex;
     justify-content: space-around;
@@ -47,6 +47,12 @@ nav {
     flex-direction: column;
     justify-content: center;
     gap: 1vw;
+}
+
+#descButton {
+    width: 50%;
+    align-self: center;
+    margin-top: -10px;
 }
 
 ul {
@@ -115,6 +121,21 @@ section.active {
 
 #experience {
     min-height: 30vh;
+}
+
+.exp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.expCompany {
+    font-size: 2.8rem !important;
+}
+
+.exp > ul {
+    list-style: inside;
+    font-size: 1.5rem;
 }
 
 #education {
