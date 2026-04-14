@@ -4,6 +4,8 @@
     --YELLOW50: rgb(236, 171, 59, 0.5);
     --YELLOW25: rgb(236, 171, 59, 0.25);
     --BROWN: #17110b;
+    --RED: rgb(148, 0, 0);
+    --RED50: rgb(87, 0, 0, 0.5);
 }
 
 * {
@@ -364,4 +366,106 @@ section.active {
 
 #relevantCoursework > ul {
     font-size: 1.4rem;
+}
+
+.final-actions {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.final-actions button {
+    width: 10w;
+    height: 5vw;
+    font-size: 3rem;
+    padding: 1.25vw;
+    border: 3px solid var(--YELLOW);
+    border-radius: 50px;
+    background-color: var(--YELLOW50);
+    color: inherit;
+    font-family: inherit;
+    overflow: hidden;
+}
+
+.btn-99 {
+    border: 3px solid var(--RED) !important;
+    color: var(--RED) !important;
+    background-color: var(--RED50) !important;
+  --margin: 20%;
+  -webkit-clip-path: polygon(
+    calc(var(--margin) * -1) 0,
+    calc(100% + var(--margin)) 0,
+    calc(100% + var(--margin)) 100%,
+    calc(var(--margin) * -1) 100%
+  );
+  clip-path: polygon(
+    calc(var(--margin) * -1) 0,
+    calc(100% + var(--margin)) 0,
+    calc(100% + var(--margin)) 100%,
+    calc(var(--margin) * -1) 100%
+  );
+  -webkit-mask-image: none;
+  position: relative;
+  text-transform: uppercase;
+  transition: 0.2s;
+}
+.btn-99:before {
+  background: var(--RED);
+  content: "";
+  height: 5px;
+  left: -100%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.2s;
+  width: calc(100% + var(--margin) * 2);
+}
+.btn-99:hover:before {
+  transform: translate(calc(100% - var(--margin) * 2), -50%);
+}
+
+/* PRINT BUTTON */
+.btn-41 {
+  position: relative;
+  width: 10vw;
+}
+.btn-41 span {
+  mix-blend-mode: difference;
+}
+.btn-41:before {
+  background: var(--YELLOW25);
+  border-radius: 999px;
+  content: "";
+  inset: 0;
+  position: absolute;
+  transition: transform 0.2s;
+}
+.btn-41:hover:before {
+  transform: scale(0.7);
+}
+
+
+@media print {
+  body {
+    background: white;
+  }
+
+  aside,
+  nav,
+  .form,
+  .final-actions {
+    display: none;
+  }
+
+  #previewContainer {
+    overflow: visible;
+  }
+
+  #preview {
+    box-shadow: none;
+    transform: none !important;
+  }
 }

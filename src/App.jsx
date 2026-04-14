@@ -31,6 +31,27 @@ export default function App() {
 
   const [currentSection, setCurrentSection] = useState("personal");
 
+  const handleReset = () => {
+    setPersonalInfo({
+      name: DEF_NAME,
+      email: DEF_EMAIL,
+      city: DEF_CITY,
+      country: DEF_CNTRY,
+      tel: DEF_TEL,
+    });
+    setEducation({
+      school: "",
+      degree: "",
+      courses: [],
+    });
+    setExperience([]);
+    setSummary({ summary: "" });
+    setCurrentSection("personal");
+  };
+
+  const handlePrint = () => {
+    window.print();
+  };
 
   // Render correct form
   const renderForm = () => {
@@ -66,6 +87,14 @@ export default function App() {
             setEducation={setEducation}
           />
         );
+
+      case "final":
+        return (
+          <div className="final-actions">
+            <button className="btn-99" onClick={handleReset}>Reset</button>
+            <button className="btn-41" onClick={handlePrint}>Print</button>
+          </div>
+        )
 
       default:
         return null;
