@@ -68,6 +68,7 @@ export default function ProfessionalForm({ experience, setExperience }) {
         placeholder="Company"
         value={newExperience.company}
         onChange={handleChange}
+        autoComplete="off"
       />
 
       <input
@@ -76,6 +77,7 @@ export default function ProfessionalForm({ experience, setExperience }) {
         placeholder="Position"
         value={newExperience.position}
         onChange={handleChange}
+        autoComplete="off"
       />
 
       <input
@@ -84,6 +86,7 @@ export default function ProfessionalForm({ experience, setExperience }) {
         placeholder="Start Date"
         value={newExperience.startDate}
         onChange={handleChange}
+        autoComplete="off"
       />
 
       <input
@@ -92,24 +95,28 @@ export default function ProfessionalForm({ experience, setExperience }) {
         placeholder="End Date"
         value={newExperience.endDate}
         onChange={handleChange}
+        autoComplete="off"
       />
 
-      <input
-        type="text"
-        name="description"
-        value={bulletInput.description}
-        onChange={(e) => {
-          const {name, value} = e.target;
+      <div id="bulletpoints">
+        <input
+          type="text"
+          name="description"
+          value={bulletInput.description}
+          onChange={(e) => {
+            const {name, value} = e.target;
 
-          setBulletInput({
-            ...bulletInput,
-            [name]: value,
-          });
-        }}
-        placeholder="Job Description..."
-      />
+            setBulletInput({
+              ...bulletInput,
+              [name]: value,
+            });
+          }}
+          placeholder="Job Description..."
+          autoComplete="off"
+        />
 
-      <button id="descButton" onClick={handleDescButton} type="button">+ Bulletpoint</button>
+        <button id="descButton" onClick={handleDescButton} type="button">+ Bulletpoint</button>
+      </div>
 
       <button
         type="button"

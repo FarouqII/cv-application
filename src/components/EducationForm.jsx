@@ -57,6 +57,7 @@ export default function EducationForm({ education, setEducation }) {
         placeholder="School"
         value={education.school == DEF_SCHOOL ? "" : education.school}
         onChange={handleChange}
+        autoComplete="off"
       />
 
       <input
@@ -65,6 +66,7 @@ export default function EducationForm({ education, setEducation }) {
         placeholder="Degree"
         value={education.degree == DEF_DEGREE ? "" : education.degree}
         onChange={handleChange}
+        autoComplete="off"
       />
 
       <form onSubmit={handleSubmit}>
@@ -74,6 +76,7 @@ export default function EducationForm({ education, setEducation }) {
           value={courseInput.cid}
           onChange={handleInputChange}
           placeholder="Course ID"
+          autoComplete="off"
         />
 
         <input
@@ -82,6 +85,7 @@ export default function EducationForm({ education, setEducation }) {
           value={courseInput.cname}
           onChange={handleInputChange}
           placeholder="Course Name"
+          autoComplete="off"
         />
 
         <button type="submit">Submit</button>

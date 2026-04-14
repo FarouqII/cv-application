@@ -47,9 +47,9 @@ export default function CVPreview({ personalInfo, summary, education, experience
           const end = exp.endDate.length == 0 ? "Present" : `${MONTHS[endMonth]} ${endYear}`;
 
           return (
-            <div class="exp">
-              <p class="expCompany"><b>{exp.company}</b> – {exp.position}</p>
-              <p class="expDate"><i>{start} - {end}</i></p>
+            <div className="exp">
+              <p className="expCompany"><b>{exp.company}</b> – {exp.position}</p>
+              <p className="expDate"><i>{start} - {end}</i></p>
 
               <ul>
                 {exp.bullets.map(description => {

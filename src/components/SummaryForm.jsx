@@ -12,7 +12,7 @@ export default function SummaryForm({summary, setSummary}) {
         <div className="form">
             <h2>Professional Summary</h2>
 
-            <textarea name="summary" rows="20" cols="50" maxLength={445} placeholder="Summary.." onChange={handleChange}></textarea>
+            <textarea name="summary" rows="20" cols="50" maxLength={381} placeholder="Summary.." onChange={handleChange}></textarea>
         </div>
     )
 }

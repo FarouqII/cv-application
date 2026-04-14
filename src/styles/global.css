@@ -1,14 +1,59 @@
+:root {
+    --YELLOW: #ecab3b;
+    --YELLOW80: rgb(236, 171, 59, 0.8);
+    --YELLOW50: rgb(236, 171, 59, 0.5);
+    --YELLOW25: rgb(236, 171, 59, 0.25);
+    --BROWN: #17110b;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+@font-face {
+    font-family: "Ramdone";
+    src: url(../assets/Ramdone\ DEMO.ttf);
 }
 
 body, #root {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    background-color: rgb(161, 161, 161);
+    background-color: var(--BROWN);
+}
+button, a {
+    cursor: pointer;
+}
+
+input, textarea {
+    caret-color: var(--YELLOW);
+    border: none;
+    transition: all 0.25s ease;
+}
+
+input:focus, textarea:focus {
+  box-shadow: 0 0 10px var(--YELLOW);
+  transform: scale(1.02);
+  outline: none;
+}
+
+input {
+    font-size: 1.25rem;
+    padding: 10px;
+    background: none;
+    border: 2px solid var(--YELLOW);
+    border-radius: 20px;
+    color: var(--YELLOW);
+}
+
+::placeholder {
+    color: var(--YELLOW50);
+}
+
+input[type="date"] { color: var(--YELLOW50); }
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(74%) sepia(56%) saturate(1172%) hue-rotate(350deg) brightness(96%) contrast(92%);
 }
 
 #content {
@@ -24,29 +69,104 @@ body, #root {
 }
 
 aside {
-    min-width: 20%;
+    min-width: 25vw;
+    max-width: 25vw;
     height: 30%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    font-family: 'Roboto', sans-serif;
-    color: white;
+    font-family: 'Ramdone', sans-serif;
+    color: var(--YELLOW);
 }
 
 nav {
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    margin-right: 2vw;
+    gap: 1vw;
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: var(--YELLOW);
+    width: 2.5vw;
+    transition: all 0.25s ease;
+    border-bottom: 2px solid transparent;
+}
+
+nav button:hover{
+     transform: scale(1.1);
+}
+
+.activeBtn {
+    transform: scale(1.1);
+    border-bottom: 2px solid var(--YELLOW);
+}
+
+.inactiveBtn {
+    transform: scale(0.8);
 }
 
 .form {
     height: 100%;
-    width: 50%;
+    min-width: 20vw;
+    max-width: 20vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1vw;
+}
+
+.form h2 {
+    font-weight: normal;
+    font-size: 4rem;
+    line-height: 85%;
+}
+
+.form button {
+    font-size: 1.75rem;
+    padding: 0.5vw;
+    background: var(--YELLOW25);
+    border: 2px solid var(--YELLOW80);
+    border-radius: 12px;
+    color: var(--YELLOW);
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.form button:hover {
+    background: var(--YELLOW80);
+    border-radius: 20px;
+    color: var(--BROWN);
+}
+
+.form textarea {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0.5vw;
+    font-size: 1rem;
+    background: var(--YELLOW25);
+    border-radius: 15px;
+}
+
+.form form {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5vw;
+}
+
+.form form input {
+    width: 100%;
+}
+
+.form form button {
+    font-size: 1.25rem;
+    width: 100%;
 }
 
 #descButton {
@@ -59,17 +179,50 @@ ul {
     list-style: none;
 }
 
+#camera {
+    width: 210mm;
+    height: 297mm;
+    transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-origin: top center;
+}
+
+#camera.personal {
+  transform: translateY(0%);
+}
+
+#camera.summary {
+  transform: translateY(-5%);
+}
+
+#camera.experience {
+  transform: translateY(-15%);
+}
+
+#camera.education {
+  transform: translateY(-70%);
+}
+
+#camera.final {
+  transform: scale(0.7) translateY(0);
+}
+
+#camera.final section {
+    filter: blur(0px);
+    opacity: 1;
+}
+
 #previewContainer {
     align-self: flex-start;
-    width: 100%;
-    height: 100%;
+    width: 210mm;
+    height: 297mm;
     padding: 1vw;
-    /* border: 1px solid gray; */
-    overflow-y: scroll;
+    overflow: hidden;
+    position: relative;
 }
 
 #preview {
-    height: 350vh;
+    width: 210mm;
+    height: 297mm;
     box-shadow: 0px 2px 38px rgba(0, 0, 0, 0.2);
     padding: 3vw 2vw;
     text-align: center;
@@ -77,23 +230,24 @@ ul {
 }
 
 #preview h1 {
-    font-size: 6rem;
+    font-size: 5.5rem;
 }
 
 #preview h3 {
-    font-size: 3.5rem;
+    font-size: 3rem;
 }
 
 #preview p {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 section {
-    transition: all 0.5s ease;
+    padding: 1vh;
+    transition: transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 section.inactive {
-    filter: blur(6px);
+    filter: blur(6px) brightness(0.7);
     opacity: 0.4;
 }
 
@@ -111,16 +265,21 @@ section.active {
     height: 20vh;
 }
 
+#personal h1 {
+    font-size: 4rem;
+    text-align: left;
+}
+
 #personal p {
     font-size: 1.5rem;
 }
 
 #summary {
-    height: 30vh
+    height: 21vh;
 }
 
 #experience {
-    min-height: 30vh;
+    height: 50vh;
 }
 
 .exp {
@@ -130,20 +289,59 @@ section.active {
 }
 
 .expCompany {
-    font-size: 2.8rem !important;
+    font-size: 2rem !important;
+}
+
+.expDate {
+    font-size: 1.3rem !important;
 }
 
 .exp > ul {
     list-style: inside;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+}
+
+#bulletpoints {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1vw;
+    border: 2px solid var(--YELLOW);
+    border-radius: 20px;
+    padding: 0.5vw;
+}
+
+#bulletpoints input {
+    border: none;
+}
+
+#bulletpoints input:focus {
+    box-shadow: none;
+}
+
+#bulletpoints button {
+    width: 100%;
+    padding: 0.25vw;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: none;
+    border: 3px solid #312417cc;
+    border-radius: 10px;
+    color: rgb(236, 171, 59, 0.75);
+    transition: background 0.15s ease;
+}
+
+#bulletpoints button:hover {
+    background: #312417cc;
 }
 
 #education {
     display: flex;
+    align-self: flex-end;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 30vh;
+    min-height: 10vh;
     padding: 0 5vw;
 }
 
@@ -156,14 +354,14 @@ section.active {
 
 #relevantCoursework {
     width: 50%;
-    margin-top: 3vh;
+    margin-top: 1vh;
 }
 
 #relevantCoursework > p {
-    font-size: 2.25rem;
+    font-size: 2rem;
     font-weight: 700;
 }
 
 #relevantCoursework > ul {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }

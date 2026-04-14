@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {DEF_NAME, DEF_EMAIL, DEF_CITY, DEF_CNTRY, DEF_TEL, DEF_SMMRY, DEF_SCHOOL, DEF_DEGREE} from './placeholders.js';
+import {DEF_NAME, DEF_EMAIL, DEF_CITY, DEF_CNTRY, DEF_TEL} from './placeholders.js';
 import PersonalInfoForm from "./components/PersonalInfoForm";
 import SummaryForm from "./components/SummaryForm";
 import EducationForm from "./components/EducationForm.jsx";
@@ -18,14 +18,14 @@ export default function App() {
   });
 
   const [summary, setSummary] = useState({
-    summary: DEF_SMMRY,
+    summary: "",
   })
 
   const [experience, setExperience] = useState([]);
 
   const [education, setEducation] = useState({
-    school: DEF_SCHOOL,
-    degree: DEF_DEGREE,
+    school: "",
+    degree: "",
     courses: [],
   });
 
@@ -84,13 +84,15 @@ export default function App() {
       </aside>
 
       <div id="previewContainer">
-        <CVPreview
-          personalInfo={personalInfo}
-          summary={summary}
-          education={education}
-          experience={experience}
-          currentSection = {currentSection}
-        />
+        <div id="camera" className={currentSection}>
+          <CVPreview
+            personalInfo={personalInfo}
+            summary={summary}
+            education={education}
+            experience={experience}
+            currentSection = {currentSection}
+          />
+        </div>
       </div>
     </div>
   );
