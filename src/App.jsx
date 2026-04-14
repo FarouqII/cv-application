@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {DEF_NAME, DEF_EMAIL, DEF_CITY, DEF_CNTRY, DEF_TEL} from './placeholders.js';
 import PersonalInfoForm from "./components/PersonalInfoForm";
 import SummaryForm from "./components/SummaryForm";
@@ -6,6 +6,7 @@ import EducationForm from "./components/EducationForm.jsx";
 import ExperienceForm from "./components/ExperienceForm.jsx";
 import CVPreview from "./components/CVPreview";
 import Navigation from "./components/Navigation";
+import SplashScreen from "./components/SplashScreen";
 
 export default function App() {
   // State
@@ -30,6 +31,16 @@ export default function App() {
   });
 
   const [currentSection, setCurrentSection] = useState("personal");
+
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleReset = () => {
     setPersonalInfo({
@@ -103,6 +114,7 @@ export default function App() {
 
   return (
     <div id="content">
+      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
       <aside>
         <Navigation
           currentSection={currentSection}
